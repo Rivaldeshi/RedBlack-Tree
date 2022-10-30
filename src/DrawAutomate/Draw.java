@@ -125,7 +125,7 @@ public class Draw {
 
 		Panel graphPan = new Panel();
 
-		graphPan.setLayout(new  GridBagLayout());
+		//graphPan.setLayout(new  GridBagLayout());
 
 		graphPan.add(graphComponent,new  GridBagConstraints());
 		pan.setBackground(Color.white);

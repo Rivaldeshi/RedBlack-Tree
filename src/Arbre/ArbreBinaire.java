@@ -1,20 +1,33 @@
 package Arbre;
 
+import java.util.ArrayDeque;
 import java.util.ArrayList;
+import java.util.List;
+import java.util.Queue;
 
-public class ArbreBinaire {
+public class ArbreBinaire extends Noeud {
 
     protected Noeud Racine;
-    protected ArrayList<Noeud> Noeuds = new ArrayList<>();
+    protected List<Noeud> Noeuds = new ArrayList<>();
 
     public ArbreBinaire(int cles) {
-        Noeud noeud = new Noeud(cles);
-        Racine = noeud;
-        Noeuds.add(noeud);
+        super(cles);
+        Racine = this;
+        Noeuds.add(this);
     }
 
     public ArbreBinaire() {
+        super();
         Racine = null;
+    }
+
+    public Noeud GetNoeud(int cles) {
+
+        for (Noeud noeud : Noeuds) {
+            if (noeud.getCles() == cles)
+                return noeud;
+        }
+        return null;
     }
 
     public Noeud getRacine() {
@@ -25,7 +38,7 @@ public class ArbreBinaire {
         Racine = racine;
     }
 
-    public ArrayList<Noeud> getNoeuds() {
+    public List<Noeud> getNoeuds() {
         return Noeuds;
     }
 
@@ -35,6 +48,50 @@ public class ArbreBinaire {
 
     public boolean IsFeuille() {
         return this.Racine.IsFeuille();
+    }
+
+    public void ParcourInfixe(Noeud node, ArrayList<Noeud> noeuds) {
+        if (node != null) {
+            ParcourInfixe(node.getFilsG(), noeuds);
+            noeuds.add(node);
+            ParcourInfixe(node.getFilsD(), noeuds);
+        }
+    }
+
+    public void ParcourPrefix(Noeud node, ArrayList<Noeud> noeuds) {
+        if (node != null) {
+            noeuds.add(node);
+            ParcourPrefix(node.getFilsG(), noeuds);
+
+            ParcourPrefix(node.getFilsD(), noeuds);
+        }
+    }
+
+    public List<Noeud> ParcourLargeur() {
+        List<Noeud> noeuds = new ArrayList<>();
+
+        Queue<Noeud> file = new ArrayDeque<Noeud>();
+        file.add(this.Racine);
+        while (!file.isEmpty()) {
+            Noeud noeud = file.remove();
+            noeuds.add(noeud);
+            if (noeud.getFilsG() != null)
+                file.add(noeud.getFilsG());
+            if (noeud.getFilsD() != null)
+                file.add(noeud.getFilsD());
+        }
+        return noeuds;
+    }
+
+    public void actualiserListeDesNoeuds() {
+        Noeuds = ParcourLargeur();
+    }
+
+    public void printArbre() {
+        for (Noeud noeud : this.getNoeuds()) {
+            noeud.printNoeud();
+        }
+        System.out.println("\n\n\n");
     }
 
 }

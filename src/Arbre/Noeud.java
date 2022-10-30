@@ -2,19 +2,34 @@ package Arbre;
 
 public class Noeud {
 
-	private int Cles;
-	private Noeud FilsG;
+	protected int Cles;
+	protected Noeud FilsG;
+	protected Noeud FilsD;
+	protected Noeud Parent;
 
-	private Noeud FilsD;
+	protected int Color;
 
 	public Noeud(int item) {
 		Cles = item;
 		FilsD = null;
 		FilsD = null;
+		Parent = null;
+		Color = 1;
+	}
+
+	public Noeud() {
+
 	}
 
 	public boolean IsFeuille() {
 		return FilsD == null && FilsG == null;
+	}
+
+	public void Copy(Noeud noeud) {
+		this.Cles = noeud.getCles();
+		this.FilsD = noeud.getFilsD();
+		this.FilsG = noeud.getFilsG();
+		this.Parent = noeud.getParent();
 	}
 
 	public Noeud getFilsD() {
@@ -23,6 +38,14 @@ public class Noeud {
 
 	public void setFilsD(Noeud filsD) {
 		FilsD = filsD;
+	}
+
+	public int getColor() {
+		return Color;
+	}
+
+	public void setColor(int color) {
+		Color = color;
 	}
 
 	public Noeud getFilsG() {
@@ -45,4 +68,16 @@ public class Noeud {
 		return " " + Cles;
 	}
 
+	public Noeud getParent() {
+		return Parent;
+	}
+
+	public void setParent(Noeud parent) {
+		Parent = parent;
+	}
+
+	public void printNoeud() {
+		System.out.println("  { Moi : " + this + " , filsG : " + this.FilsG + " ,  filsD : " + this.FilsD
+				+ "  ,  Pere : " + this.Parent + " }  ");
+	}
 }
