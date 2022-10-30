@@ -30,7 +30,7 @@ public class AbreBinaireView extends Panel {
 		unsetfocus();
 		VUE.focus();
 		try {
-			footer.add(Draw.drawAutomate(arbreBinaire, "Vue"));
+			footer.add(Draw.drawArbre(arbreBinaire, "Vue"));
 
 		} catch (Exception e) {
 			// TODO: handle exception
@@ -56,7 +56,7 @@ public class AbreBinaireView extends Panel {
 					if (e.getSource() == VUE) {
 
 						VUE.focus();
-						footer.add(Draw.drawAutomate(arbreBinaire, "TOOL_TIP_TEXT_KEY"));
+						footer.add(Draw.drawArbreRougeNoir(arbreBinaire, "Arbre"));
 
 					} else if (e.getSource() == INSERTION) {
 						INSERTION.focus();

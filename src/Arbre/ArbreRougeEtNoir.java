@@ -22,7 +22,6 @@ public class ArbreRougeEtNoir extends ArbreBinaireDeRecheche {
             return;
         }
 
-
         Reorganiser(noeud);
     }
 
@@ -33,25 +32,25 @@ public class ArbreRougeEtNoir extends ArbreBinaireDeRecheche {
             i++;
             if (noeud.Parent == noeud.Parent.Parent.FilsD) {
                 u = noeud.Parent.Parent.FilsG;
-                if (u.Color == 1) {
+                if (u != null && u.Color == 1) {
                     u.Color = 0;
                     noeud.Parent.Color = 0;
                     noeud.Parent.Parent.Color = 1;
                     noeud = noeud.Parent.Parent;
                 } else {
-                    
+
                     if (noeud == noeud.Parent.FilsG) {
                         noeud = noeud.Parent;
-                        RoationDroit(noeud);
+                        RoationDroitDansArbre(noeud);
                     }
                     noeud.Parent.Color = 0;
                     noeud.Parent.Parent.Color = 1;
-                    RoationGauche(noeud.Parent.Parent);
+                    RoationGaucheDansArbre(noeud.Parent.Parent);
                 }
 
             } else {
                 u = noeud.Parent.Parent.FilsD;
-                if (u.Color == 1) {
+                if (u != null && u.Color == 1) {
                     u.Color = 0;
                     noeud.Parent.Color = 0;
                     noeud.Parent.Parent.Color = 1;
@@ -59,11 +58,11 @@ public class ArbreRougeEtNoir extends ArbreBinaireDeRecheche {
                 } else {
                     if (noeud == noeud.Parent.FilsD) {
                         noeud = noeud.Parent;
-                        RoationGauche(noeud);
+                        RoationGaucheDansArbre(noeud);
                     }
                     noeud.Parent.Color = 0;
                     noeud.Parent.Parent.Color = 1;
-                    RoationDroit(noeud.Parent.Parent);
+                    RoationDroitDansArbre(noeud.Parent.Parent);
                 }
 
             }

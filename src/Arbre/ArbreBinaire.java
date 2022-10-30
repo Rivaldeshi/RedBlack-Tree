@@ -88,6 +88,8 @@ public class ArbreBinaire extends Noeud {
     }
 
     public void printArbre() {
+        
+        Racine.printNoeud();
         for (Noeud noeud : this.getNoeuds()) {
             noeud.printNoeud();
         }

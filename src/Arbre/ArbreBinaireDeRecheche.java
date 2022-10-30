@@ -147,7 +147,7 @@ public class ArbreBinaireDeRecheche extends ArbreBinaire {
         filsdroit.setFilsG(noeud);
         noeud.setFilsD(filsgaucheDufilsdroit);
         if (noeud.getParent() != null) {
-            noeud.getParent().setFilsG(filsdroit);
+            noeud.getParent().setFilsD(filsdroit);
             filsdroit.setParent(noeud.getParent());
         }
         noeud.setParent(filsdroit);

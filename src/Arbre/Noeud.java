@@ -77,7 +77,8 @@ public class Noeud {
 	}
 
 	public void printNoeud() {
+		String color = Color==1? "Rouge " : "Noir";
 		System.out.println("  { Moi : " + this + " , filsG : " + this.FilsG + " ,  filsD : " + this.FilsD
-				+ "  ,  Pere : " + this.Parent + " }  ");
+		+ "  ,  Couleur : " + color + "	  ,  Pere : " + this.Parent + " }  ");
 	}
 }
