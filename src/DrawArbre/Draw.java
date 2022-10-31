@@ -1,4 +1,4 @@
-package DrawAutomate;
+package DrawArbre;
 
 import SwingComponent.Panel;
 import Utils.ValidationException;
@@ -147,7 +147,7 @@ public class Draw {
 		graphComponent.setEnabled(false);
 
 		Panel graphPan = new Panel();
-		if (MainView.TableauxCourant.size() < 6) {
+		if (MainView.TableauxCourant != null && MainView.TableauxCourant.size() < 6) {
 			graphPan.setLayout(new GridBagLayout());
 		}
 		graphPan.add(graphComponent, new GridBagConstraints());

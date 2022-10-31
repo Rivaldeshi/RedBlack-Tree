@@ -14,10 +14,11 @@ public class ArbreRougeEtNoir extends ArbreBinaireDeRecheche {
 
     public ArbreRougeEtNoir(List<Integer> Cles) {
         super();
+        Racine = null;
         for (Integer cle : Cles) {
             this.InserNoeud(cle);
         }
-   //     actualiserListeDesNoeuds();
+        actualiserListeDesNoeuds();
     }
 
     public void InserNoeud(int cles) {
@@ -36,9 +37,8 @@ public class ArbreRougeEtNoir extends ArbreBinaireDeRecheche {
 
     private void Reorganiser(Noeud noeud) {
         Noeud u;
-        int i = 0;
         while (noeud.Parent != null && noeud.Parent.Color == 1) {
-            i++;
+
             if (noeud.Parent == noeud.Parent.Parent.FilsD) {
                 u = noeud.Parent.Parent.FilsG;
                 if (u != null && u.Color == 1) {
@@ -78,8 +78,18 @@ public class ArbreRougeEtNoir extends ArbreBinaireDeRecheche {
             if (noeud == Racine) {
                 break;
             }
-            System.out.println(i);
         }
         Racine.Color = 0;
     }
+
+    public void SupressionNoeud(int cle) {
+        List<Integer> cles = GetListeCleParcourLargeur();
+        cles.remove(Integer.valueOf(cle));
+        Racine = null;
+        for (Integer cl : cles) {
+            this.InserNoeud(cl);
+        }
+        actualiserListeDesNoeuds();
+    }
+
 }

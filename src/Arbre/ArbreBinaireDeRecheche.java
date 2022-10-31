@@ -19,12 +19,12 @@ public class ArbreBinaireDeRecheche extends ArbreBinaire {
 
     public ArbreBinaireDeRecheche(List<Integer> Cles) {
         super();
+        Racine = null;
         for (Integer cle : Cles) {
             this.InserNoeud(cle);
         }
         actualiserListeDesNoeuds();
     }
-
 
     public void InserNoeud(Noeud noeud) {
         this.setRacine(InsertionRecursive(this.getRacine(), noeud));
@@ -62,15 +62,24 @@ public class ArbreBinaireDeRecheche extends ArbreBinaire {
         return racine;
     }
 
-    public void SupressionNoeud(int cles) {
-        Racine = SuppressionRecursive(Racine, cles);
-        for (Noeud noeud : Noeuds) {
-            if (noeud.getCles() == cles) {
-                Noeuds.remove(noeud);
-                break;
-            }
+    public void SupressionNoeud(int cle) {
+        List<Integer> cles = GetListeCleParcourLargeur();
+        cles.remove(Integer.valueOf(cle));
+        Racine = null;
+        for (Integer cl : cles) {
+            this.InserNoeud(cl);
         }
+        actualiserListeDesNoeuds();
     }
+    // public void SupressionNoeud(int cles) {
+    // Racine = SuppressionRecursive(Racine, cles);
+    // for (Noeud noeud : Noeuds) {
+    // if (noeud.getCles() == cles) {
+    // Noeuds.remove(noeud);
+    // break;
+    // }
+    // }
+    // }
 
     public static Noeud SuppressionRecursive(Noeud racine, int cles) {
 
@@ -104,23 +113,56 @@ public class ArbreBinaireDeRecheche extends ArbreBinaire {
         return minval;
     }
 
-    Noeud RoationDroit(Noeud noeud) {
-
-        if (noeud == null)
-            return null;
-
-        Noeud filsgauche = noeud.getFilsG();// 29
-        if (filsgauche == null)
-            return noeud;
-        Noeud filsdroitDufilsgauche = filsgauche.getFilsD();
-        filsgauche.setFilsD(noeud);
-        noeud.setFilsG(filsdroitDufilsgauche);
-        if (noeud.getParent() != null) {
-            noeud.getParent().setFilsG(filsgauche);
-            filsgauche.setParent(noeud.getParent());
+    public void RoationGaucheDansArbre(int cles) {
+        Noeud noeud = this.GetNoeud(cles);
+        if (noeud == null) {
+            return;
         }
-        noeud.setParent(filsgauche);
-        return filsgauche;
+        RoationGaucheDansArbre(noeud);
+    }
+
+    public void RoationGaucheDansArbre(Noeud x) {
+        Noeud y = x.FilsD;
+
+        if (y == null)
+            return;
+
+        x.FilsD = y.FilsG;
+        if (y.FilsG != null) {
+            y.FilsG.Parent = x;
+        }
+        y.Parent = x.Parent;
+        if (x.Parent == null) {
+            this.Racine = y;
+        } else if (x == x.Parent.FilsG) {
+            x.Parent.FilsG = y;
+        } else {
+            x.Parent.FilsD = y;
+        }
+        y.FilsG = x;
+        x.Parent = y;
+    }
+
+    public void RoationDroitDansArbre(Noeud x) {
+        Noeud y = x.FilsG;
+
+        if (y == null)
+            return;
+        x.FilsG = y.FilsD;
+
+        if (y.FilsD != null) {
+            y.FilsD.Parent = x;
+        }
+        y.Parent = x.Parent;
+        if (x.Parent == null) {
+            this.Racine = y;
+        } else if (x == x.Parent.FilsD) {
+            x.Parent.FilsD = y;
+        } else {
+            x.Parent.FilsG = y;
+        }
+        y.FilsD = x;
+        x.Parent = y;
     }
 
     public void RoationDroitDansArbre(int cles) {
@@ -128,63 +170,7 @@ public class ArbreBinaireDeRecheche extends ArbreBinaire {
         if (noeud == null) {
             return;
         }
-        Noeud noeud1 = RoationDroit(noeud);
-        if (noeud == Racine) {
-            noeud1.setParent(null);
-            noeud.setParent(Racine);
-            Racine = noeud1;
-        }
-    }
-
-    public void RoationDroitDansArbre(Noeud noeud) {
-        Noeud noeud1 = RoationDroit(noeud);
-        if (noeud == Racine) {
-            noeud1.setParent(null);
-            noeud.setParent(Racine);
-            Racine = noeud1;
-        }
-    }
-
-    Noeud RoationGauche(Noeud noeud) {
-
-        if (noeud == null)
-            return null;
-
-        Noeud filsdroit = noeud.getFilsD();// 29
-        if (filsdroit == null)
-            return noeud;
-        Noeud filsgaucheDufilsdroit = filsdroit.getFilsG();
-
-        filsdroit.setFilsG(noeud);
-        noeud.setFilsD(filsgaucheDufilsdroit);
-        if (noeud.getParent() != null) {
-            noeud.getParent().setFilsD(filsdroit);
-            filsdroit.setParent(noeud.getParent());
-        }
-        noeud.setParent(filsdroit);
-        return filsdroit;
-    }
-
-    public void RoationGaucheDansArbre(int cles) {
-        Noeud noeud = this.GetNoeud(cles);
-        if (noeud == null) {
-            return;
-        }
-        Noeud noeud1 = RoationGauche(noeud);
-        if (noeud == Racine) {
-            noeud1.setParent(null);
-            noeud.setParent(Racine);
-            Racine = noeud1;
-        }
-    }
-
-    public void RoationGaucheDansArbre(Noeud noeud) {
-        Noeud noeud1 = RoationGauche(noeud);
-        if (noeud == Racine) {
-            noeud1.setParent(null);
-            noeud.setParent(Racine);
-            Racine = noeud1;
-        }
+        RoationDroitDansArbre(noeud);
     }
 
 }

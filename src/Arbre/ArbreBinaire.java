@@ -83,12 +83,21 @@ public class ArbreBinaire extends Noeud {
         return noeuds;
     }
 
+    public List<Integer> GetListeCleParcourLargeur() {
+        List<Integer> cles = new ArrayList<>();
+        List<Noeud> noeuds = ParcourLargeur();
+        for (Noeud noeud : noeuds) {
+            cles.add(noeud.Cles);
+        }
+        return cles;
+    }
+
     public void actualiserListeDesNoeuds() {
         Noeuds = ParcourLargeur();
     }
 
     public void printArbre() {
-        
+
         Racine.printNoeud();
         for (Noeud noeud : this.getNoeuds()) {
             noeud.printNoeud();

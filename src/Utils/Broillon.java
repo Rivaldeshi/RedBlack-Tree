@@ -28,4 +28,81 @@ public class Broillon {
 
 	// public static AbreBinaireView arbreview = new AbreBinaireView(ArbreCourant);
 
+
+    
+    // Noeud RoationDroit(Noeud noeud) {
+
+    //     if (noeud == null)
+    //         return null;
+
+    //     Noeud filsgauche = noeud.getFilsG();// 29
+    //     if (filsgauche == null)
+    //         return noeud;
+    //     Noeud filsdroitDufilsgauche = filsgauche.getFilsD();
+    //     filsgauche.setFilsD(noeud);
+    //     noeud.setFilsG(filsdroitDufilsgauche);
+    //     if (noeud.getParent() != null) {
+    //         noeud.getParent().setFilsG(filsgauche);
+    //         filsgauche.setParent(noeud.getParent());
+    //     }
+    //     noeud.setParent(filsgauche);
+    //     return filsgauche;
+    // }
+
+    // public void RoationDroitDansArbre(int cles) {
+    //     Noeud noeud = this.GetNoeud(cles);
+    //     if (noeud == null) {
+    //         return;
+    //     }
+        
+    //     Noeud noeud1 = RoationDroit(noeud);
+    //     if (noeud == Racine) {
+    //         noeud1.setParent(null);
+    //         noeud.setParent(Racine);
+    //         Racine = noeud1;
+    //     }
+    // }
+
+    // // public void RoationDroitDansArbre(Noeud noeud) {
+    // // Noeud noeud1 = RoationDroit(noeud);
+    // // if (noeud == Racine) {
+    // // noeud1.setParent(null);
+    // // noeud.setParent(Racine);
+    // // Racine = noeud1;
+    // // }
+    // // }
+
+    // Noeud RoationGauche(Noeud noeud) {
+
+    //     if (noeud == null)
+    //         return null;
+
+    //     Noeud filsdroit = noeud.getFilsD();// 29
+    //     if (filsdroit == null)
+    //         return noeud;
+    //     Noeud filsgaucheDufilsdroit = filsdroit.getFilsG();
+
+    //     filsdroit.setFilsG(noeud);
+    //     noeud.setFilsD(filsgaucheDufilsdroit);
+    //     if (noeud.getParent() != null) {
+    //         noeud.getParent().setFilsD(filsdroit);
+    //         filsdroit.setParent(noeud.getParent());
+    //     }
+    //     noeud.setParent(filsdroit);
+    //     return filsdroit;
+    // }
+
+    // public void RoationGaucheDansArbre(int cles) {
+    //     Noeud noeud = this.GetNoeud(cles);
+    //     if (noeud == null) {
+    //         return;
+    //     }
+    //     Noeud noeud1 = RoationGauche(noeud);
+    //     if (noeud == Racine) {
+    //         noeud1.setParent(null);
+    //         noeud.setParent(Racine);
+    //         Racine = noeud1;
+    //     }
+    // }
+
 }

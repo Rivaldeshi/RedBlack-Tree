@@ -19,7 +19,7 @@ public class DrawTable extends Panel {
 
     //int[] els1 = { 1, 9, 5, 8, 3, 2, 7, 11 };
    // int[] els1 = { 1, 2, 3, 4, 5, 6, 7, 8 };
-    int[] els1 = { 10, 7, 42, 5, 31, 64, 50, 83, 29, 23 };
+    int[] els1 = { 0, 7, 2, 5, 31, 64, 50, 83, 29, 23 };
 
     DrawTable(int a) {
         tab = new Text[a];

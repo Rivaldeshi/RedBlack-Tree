@@ -78,12 +78,12 @@ public class Menu extends Panel {
 			if (e.getSource() == ArbreBinairRecherche) {
 				Frame.splitPane
 						.setRightComponent(
-								new AbreBinaireView(new ArbreBinaireDeRecheche(MainView.TableauxCourant), false));
+								new AbreBinaireView(MainView.ArbreRechercheCourant, false));
 				ArbreBinairRecherche.focus();
 
 			} else if (e.getSource() == ArbreRougeNoire) {
 				Frame.splitPane
-						.setRightComponent(new AbreBinaireView(new ArbreRougeEtNoir(MainView.TableauxCourant), true));
+						.setRightComponent(new AbreBinaireView(MainView.ArbreRougeNoirCourant, true));
 				ArbreRougeNoire.focus();
 			} else
 
