@@ -32,8 +32,9 @@ public class Accueil extends Panel {
 
 		erreur.setForeground(Color.red);
 		// les bouton
-		Button valider = new Button("Valider");
-		Button valider2 = new Button("Valider Les Element");
+		Button valider = new Button("Valider la taille");
+		final Button valider2 = new Button("Valider les element");
+		valider2.setEnabled(false);
 
 		final Button valider1 = new Button("Valider les elements");
 
@@ -77,6 +78,7 @@ public class Accueil extends Panel {
 					p1.repaint();
 					p1.revalidate();
 					erreur.setText("");
+					valider2.setEnabled(true);
 				} catch (Exception e1) {
 					erreur.setText("Erreur de saisie");
 				}
@@ -91,8 +93,8 @@ public class Accueil extends Panel {
 					List<Integer> elmes = Table.getElem();
 					MainView.TableauxCourant.clear();
 					MainView.TableauxCourant.addAll(elmes);
-					MainView.ArbreRechercheCourant= new ArbreBinaireDeRecheche(elmes);
-					MainView.ArbreRougeNoirCourant= new ArbreRougeEtNoir(elmes);
+					MainView.ArbreRechercheCourant = new ArbreBinaireDeRecheche(elmes);
+					MainView.ArbreRougeNoirCourant = new ArbreRougeEtNoir(elmes);
 					MainView.menu.bon();
 				} catch (Exception e1) {
 					erreur.setText("Erreur de saisie");
@@ -108,8 +110,8 @@ public class Accueil extends Panel {
 					List<Integer> elmes = Table.getElem();
 					MainView.TableauxCourant.clear();
 					MainView.TableauxCourant.addAll(elmes);
-					MainView.ArbreRechercheCourant= new ArbreBinaireDeRecheche(elmes);
-					MainView.ArbreRougeNoirCourant= new ArbreRougeEtNoir(elmes);
+					MainView.ArbreRechercheCourant = new ArbreBinaireDeRecheche(elmes);
+					MainView.ArbreRougeNoirCourant = new ArbreRougeEtNoir(elmes);
 					MainView.menu.bon();
 				} catch (Exception e1) {
 					erreur.setText("Erreur de saisie");

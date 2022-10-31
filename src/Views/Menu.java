@@ -15,7 +15,7 @@ public class Menu extends Panel {
 	public static TitreButton Accueil = new TitreButton("Accueil");
 	public static TitreButton ArbreBinairRecherche = new TitreButton("Arbre Binaire");
 	public static TitreButton ArbreRougeNoire = new TitreButton("ARbre rouge et noir");
-	public static TitreButton Legende = new TitreButton("Sommaire");
+	public static TitreButton Sommaire = new TitreButton("Sommaire");
 	public static TitreButton propos = new TitreButton("A propos");
 
 	Menu(String m) {
@@ -30,36 +30,37 @@ public class Menu extends Panel {
 		this.add(Box.createVerticalGlue());
 		this.add(ArbreRougeNoire);
 		this.add(Box.createVerticalGlue());
-		this.add(Legende);
+		this.add(Sommaire);
 		this.add(Box.createVerticalGlue());
 		this.add(propos);
 		this.add(Box.createVerticalGlue());
 
 		ArbreBinairRecherche.setEnabled(false);
 		ArbreRougeNoire.setEnabled(false);
+		Sommaire.setEnabled(false);
 		Accueil.addActionListener(action);
 		ArbreBinairRecherche.addActionListener(action);
 		ArbreRougeNoire.addActionListener(action);
-		Legende.addActionListener(action);
+		Sommaire.addActionListener(action);
 		propos.addActionListener(action);
 	}
 
 	public void bon() {
 		ArbreBinairRecherche.setEnabled(true);
 		ArbreRougeNoire.setEnabled(true);
+		Sommaire.setEnabled(true);
 	}
 
 	public static void unsetfocus() {
 		Accueil.setBackground(Color.white);
 		ArbreBinairRecherche.setBackground(Color.white);
 		ArbreRougeNoire.setBackground(Color.white);
-		Legende.setBackground(Color.white);
+		Sommaire.setBackground(Color.white);
 		propos.setBackground(Color.white);
-
 		Accueil.setForeground(Color.black);
 		ArbreBinairRecherche.setForeground(Color.black);
 		ArbreRougeNoire.setForeground(Color.black);
-		Legende.setForeground(Color.black);
+		Sommaire.setForeground(Color.black);
 		propos.setForeground(Color.black);
 
 	}
@@ -85,8 +86,8 @@ public class Menu extends Panel {
 				ArbreRougeNoire.focus();
 			} else
 
-			if (e.getSource() == Legende) {
-				Legende.focus();
+			if (e.getSource() == Sommaire) {
+				Sommaire.focus();
 				Frame.splitPane.setRightComponent(new Sommaire());
 			}
 			if (e.getSource() == propos) {

@@ -82,6 +82,25 @@ public class ArbreRougeEtNoir extends ArbreBinaireDeRecheche {
         Racine.Color = 0;
     }
 
+    public int HauteurNoirRecusive(Noeud noeud) {
+
+        if (noeud == null) {
+            return 1;
+        }
+
+        if (noeud.Color == 1) {
+            return 0 + HauteurNoirRecusive(noeud.FilsD);
+
+        } else {
+            return 1 + HauteurNoirRecusive(noeud.FilsD);
+        }
+
+    }
+
+    public int HauteurNoir() {
+        return HauteurNoirRecusive(Racine);
+    }
+
     public void SupressionNoeud(int cle) {
         List<Integer> cles = GetListeCleParcourLargeur();
         cles.remove(Integer.valueOf(cle));

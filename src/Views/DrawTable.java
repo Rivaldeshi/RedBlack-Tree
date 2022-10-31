@@ -30,8 +30,8 @@ public class DrawTable extends Panel {
         this.a = a;
         this.setLayout(new FlowLayout());
         this.setPreferredSize(new Dimension(Constans.framewidh, 50));
-
         Text l1 = new Text(0);
+        
         l1.setText("Elems");
 
         l1.setFont(new Font("serif", Font.ITALIC, 20));

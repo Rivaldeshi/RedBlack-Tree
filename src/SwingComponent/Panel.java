@@ -29,7 +29,7 @@ public class Panel extends JPanel {
 
 	public Panel(String s) {
 		this();
-		titre = new Titre("<html>"+s+"</html>", 30);
+		titre = new Titre("<html>" + s + "</html>", 30);
 		titre.setBackground(Color.BLUE);
 		titre.setForeground(Color.WHITE);
 		titre.setOpaque(true);
@@ -49,7 +49,7 @@ public class Panel extends JPanel {
 
 	public Panel(String s, boolean a) {
 		this();
-		titre = new Titre("<html>"+s+"</html>", 30);
+		titre = new Titre("<html>" + s + "</html>", 30);
 		titre.setBackground(Color.ORANGE);
 		titre.setOpaque(true);
 		this.add(titre);
@@ -63,7 +63,7 @@ public class Panel extends JPanel {
 		this.add(l);
 		this.add(b);
 	}
-	
+
 	public Panel(JScrollPane graph, Label l) {
 		super();
 		this.setBackground(Color.white);
@@ -82,18 +82,18 @@ public class Panel extends JPanel {
 		titre.setOpaque(true);
 		this.add(titre);
 	}
-	
+
 	public Panel(String s, double a) {
 		this();
-		titre = new Titre("<html>"+s+"</html>", 30);
-		titre.setBackground(Color.cyan);
-		titre.setForeground(Color.black);
+		titre = new Titre("<html>" + s + "</html>", 30);
+		titre.setBackground(Color.DARK_GRAY);
+		titre.setForeground(Color.white);
 		titre.setOpaque(true);
 		this.add(titre);
 		this.add(Box.createRigidArea(new Dimension(20, 20)));
-		
+
 		this.setBackground(Color.white);
-		this.setPreferredSize(new Dimension(Constans.framewidh/6,Constans.framehight));
+		this.setPreferredSize(new Dimension(Constans.framewidh / 2, Constans.framehight));
 
 	}
 
