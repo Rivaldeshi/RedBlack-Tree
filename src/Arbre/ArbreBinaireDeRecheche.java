@@ -46,12 +46,12 @@ public class ArbreBinaireDeRecheche extends ArbreBinaire {
             return racine;
         }
 
-        if (noeud.getCles() < racine.getCles()) {
+        if (noeud.getCles() <= racine.getCles()) {
             if (racine.getFilsG() != null) {
                 noeud.setParent(racine.getFilsG());
             }
             racine.setFilsG(InsertionRecursive(racine.getFilsG(), noeud));
-        } else if (noeud.getCles() >= racine.getCles()) {
+        } else if (noeud.getCles() > racine.getCles()) {
             if (racine.getFilsD() != null) {
                 noeud.setParent(racine.getFilsD());
             }

@@ -62,14 +62,51 @@ public class ArbreBinaire extends Noeud {
         if (node != null) {
             noeuds.add(node);
             ParcourPrefix(node.getFilsG(), noeuds);
-
             ParcourPrefix(node.getFilsD(), noeuds);
         }
     }
 
+    public void ParcourPostfix(Noeud node, ArrayList<Noeud> noeuds) {
+        if (node != null) {
+            ParcourPrefix(node.getFilsG(), noeuds);
+            noeuds.add(node);
+            ParcourPrefix(node.getFilsD(), noeuds);
+        }
+    }
+
+    public List<Integer> GetParcourPostfix() {
+        ArrayList<Noeud> noeuds = new ArrayList<>();
+        ParcourPostfix(Racine, noeuds);
+        List<Integer> cles = new ArrayList<>();
+        for (Noeud noeud : noeuds) {
+            cles.add(noeud.getCles());
+        }
+        return cles;
+    }
+
+    public List<Integer> GetParcourPrefix() {
+        ArrayList<Noeud> noeuds = new ArrayList<>();
+        ParcourPrefix(Racine, noeuds);
+        List<Integer> cles = new ArrayList<>();
+        for (Noeud noeud : noeuds) {
+            cles.add(noeud.getCles());
+        }
+        return cles;
+    }
+
+    public List<Integer> GetParcourInfixe() {
+        ArrayList<Noeud> noeuds = new ArrayList<>();
+        ParcourInfixe(Racine, noeuds);
+        List<Integer> cles = new ArrayList<>();
+        for (Noeud noeud : noeuds) {
+            cles.add(noeud.getCles());
+        }
+        return cles;
+    }
+    
+
     public List<Noeud> ParcourLargeur() {
         List<Noeud> noeuds = new ArrayList<>();
-
         Queue<Noeud> file = new ArrayDeque<Noeud>();
         file.add(this.Racine);
         while (!file.isEmpty()) {
@@ -97,7 +134,6 @@ public class ArbreBinaire extends Noeud {
     }
 
     public void printArbre() {
-
         Racine.printNoeud();
         for (Noeud noeud : this.getNoeuds()) {
             noeud.printNoeud();

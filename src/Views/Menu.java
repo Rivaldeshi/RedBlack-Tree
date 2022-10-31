@@ -5,8 +5,6 @@ import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.Box;
-import Arbre.ArbreBinaireDeRecheche;
-import Arbre.ArbreRougeEtNoir;
 import SwingComponent.Frame;
 import SwingComponent.Panel;
 import SwingComponent.TitreButton;
@@ -17,7 +15,7 @@ public class Menu extends Panel {
 	public static TitreButton Accueil = new TitreButton("Accueil");
 	public static TitreButton ArbreBinairRecherche = new TitreButton("Arbre Binaire");
 	public static TitreButton ArbreRougeNoire = new TitreButton("ARbre rouge et noir");
-	public static TitreButton Legende = new TitreButton("Legende");
+	public static TitreButton Legende = new TitreButton("Sommaire");
 	public static TitreButton propos = new TitreButton("A propos");
 
 	Menu(String m) {
@@ -89,7 +87,7 @@ public class Menu extends Panel {
 
 			if (e.getSource() == Legende) {
 				Legende.focus();
-				Frame.splitPane.setRightComponent(new Legende());
+				Frame.splitPane.setRightComponent(new Sommaire());
 			}
 			if (e.getSource() == propos) {
 				propos.setBackground(Color.BLACK);

@@ -27,7 +27,7 @@ public class AbreBinaireView extends Panel {
 
 		super();
 		try {
-			footer.add(Draw.drawArbre(arbreBinaire, "ARBRE BINAIRE DE RECHERCHE", isRougeEtNoir));
+			footer.add(Draw.drawArbre(arbreBinaire, "ARBRE BINAIRE DE RECHERCHE (Vue )", isRougeEtNoir));
 		} catch (Exception e) {
 			System.out.println(e);
 			// TODO: handle exception
@@ -56,11 +56,13 @@ public class AbreBinaireView extends Panel {
 						if (isRougeEtNoir) {
 							ArbreRougeEtNoir abrn = MainView.ArbreRougeNoirCourant;
 							abrn.RoationDroitDansArbre(Nombre);
-							footer.add(Draw.drawArbre(abrn, "ARBRE ROUGE ET NOIR", isRougeEtNoir));
+							footer.add(Draw.drawArbre(abrn, "ARBRE ROUGE ET NOIR : ROTATION DROITE  " + Nombre,
+									isRougeEtNoir));
 						} else {
 							ArbreBinaireDeRecheche abrn = MainView.ArbreRechercheCourant;
 							abrn.RoationDroitDansArbre(Nombre);
-							footer.add(Draw.drawArbre(abrn, "ARBRE BINAIRE DE RECHERCHE", isRougeEtNoir));
+							footer.add(Draw.drawArbre(abrn, "ARBRE BINAIRE DE RECHERCHE : ROTATION DROITE  " + Nombre,
+									isRougeEtNoir));
 						}
 
 					} else if (e.getSource() == INSERTION) {
@@ -70,13 +72,14 @@ public class AbreBinaireView extends Panel {
 
 							if (isRougeEtNoir) {
 								MainView.ArbreRougeNoirCourant.InserNoeud(Nombre);
-								footer.add(Draw.drawArbre(MainView.ArbreRougeNoirCourant, "ARBRE ROUGE ET NOIR",
+								footer.add(Draw.drawArbre(MainView.ArbreRougeNoirCourant,
+										"ARBRE ROUGE ET NOIR : INSERTION  " + Nombre,
 										isRougeEtNoir));
 							} else {
 								MainView.ArbreRechercheCourant.InserNoeud(Nombre);
 								footer.add(
 										Draw.drawArbre(MainView.ArbreRechercheCourant,
-												"ARBRE BINAIRE DE RECHERCHE",
+												"ARBRE BINAIRE DE RECHERCHE : INSERTION " + Nombre,
 												isRougeEtNoir));
 							}
 
@@ -90,27 +93,29 @@ public class AbreBinaireView extends Panel {
 						if (isRougeEtNoir) {
 							ArbreRougeEtNoir abrn = MainView.ArbreRougeNoirCourant;
 							abrn.RoationGaucheDansArbre(Nombre);
-							footer.add(Draw.drawArbre(abrn, "ARBRE ROUGE ET NOIR", isRougeEtNoir));
+							footer.add(Draw.drawArbre(abrn, "ARBRE ROUGE ET NOIR : ROTATION GAUCHE  " + Nombre,
+									isRougeEtNoir));
 						} else {
 							ArbreBinaireDeRecheche abrn = MainView.ArbreRechercheCourant;
 							abrn.RoationGaucheDansArbre(Nombre);
-							footer.add(Draw.drawArbre(abrn, "ARBRE BINAIRE DE RECHERCHE", isRougeEtNoir));
+							footer.add(Draw.drawArbre(abrn, "ARBRE BINAIRE DE RECHERCHE : ROTATION GAUCHE  " + Nombre,
+									isRougeEtNoir));
 						}
 
 					} else if (e.getSource() == SUPPRESSION) {
 						try {
 							int Nombre = Integer.parseInt(Element.getText());
-							// MainView.TableauxCourant.remove(Integer.valueOf(Nombre));
+
 							if (isRougeEtNoir) {
 								MainView.ArbreRougeNoirCourant.SupressionNoeud(Nombre);
-								footer.add(Draw.drawArbre(new ArbreRougeEtNoir(MainView.TableauxCourant),
-										"ARBRE ROUGE ET NOIR",
+								footer.add(Draw.drawArbre(MainView.ArbreRougeNoirCourant,
+										"ARBRE ROUGE ET NOIR : SUPPRESSION  " + Nombre,
 										isRougeEtNoir));
 							} else {
 								MainView.ArbreRechercheCourant.SupressionNoeud(Nombre);
 								footer.add(
 										Draw.drawArbre(MainView.ArbreRechercheCourant,
-												"ARBRE BINAIRE DE RECHERCHE",
+												"ARBRE BINAIRE DE RECHERCHE : SUPPRESSION  " + Nombre,
 												isRougeEtNoir));
 							}
 						} catch (Exception excep) {

@@ -4,12 +4,12 @@ import java.awt.Color;
 import SwingComponent.Panel;
 
 @SuppressWarnings("serial")
-public class Legende extends Panel {
+public class Sommaire extends Panel {
 
-	public Legende() {
-		super("Legende");
+	public Sommaire() {
+		super("Sommaire");
 		this.setBackground(Color.WHITE);
-
+   
 	}
 
 }
