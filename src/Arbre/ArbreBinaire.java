@@ -68,9 +68,9 @@ public class ArbreBinaire extends Noeud {
 
     public void ParcourPostfix(Noeud node, ArrayList<Noeud> noeuds) {
         if (node != null) {
-            ParcourPrefix(node.getFilsG(), noeuds);
+            ParcourPostfix(node.getFilsG(), noeuds);
+            ParcourPostfix(node.getFilsD(), noeuds);
             noeuds.add(node);
-            ParcourPrefix(node.getFilsD(), noeuds);
         }
     }
 
@@ -103,7 +103,6 @@ public class ArbreBinaire extends Noeud {
         }
         return cles;
     }
-    
 
     public List<Noeud> ParcourLargeur() {
         List<Noeud> noeuds = new ArrayList<>();

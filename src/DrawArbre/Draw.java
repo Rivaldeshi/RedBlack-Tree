@@ -57,6 +57,15 @@ public class Draw {
 		STYLE.putCellStyle("NOIR", style);
 
 		style = new HashMap<String, Object>();
+		style.put(mxConstants.STYLE_SHAPE, mxConstants.SHAPE_ELLIPSE);
+		style.put(mxConstants.STYLE_FONTCOLOR, "#FFFFFF");
+		style.put(mxConstants.STYLE_PERIMETER, mxPerimeter.EllipsePerimeter);
+		style.put(mxConstants.STYLE_ALIGN, mxConstants.ALIGN_CENTER);
+		style.put(mxConstants.STYLE_FILLCOLOR, "#000000");
+		style.put(mxConstants.STYLE_STROKECOLOR, "#000000");
+		STYLE.putCellStyle("NIL", style);
+
+		style = new HashMap<String, Object>();
 		style.put(mxConstants.STYLE_SHAPE, mxConstants.SHAPE_CONNECTOR);
 		style.put(mxConstants.STYLE_ENDARROW, mxConstants.ARROW_CLASSIC);
 		style.put(mxConstants.STYLE_VERTICAL_ALIGN, mxConstants.ALIGN_LEFT);
@@ -102,10 +111,17 @@ public class Draw {
 							vertexs.get(abreBinaire.getNoeuds().indexOf(noeud.getFilsG())));
 				} else {
 					if (!noeud.IsFeuille()) {
-						Object v1;
-						v1 = graph.insertVertex(parent, null, "null", 0, 0, 60, 60, "RIEN");
-						graph.insertEdge(parent, null, "", vertexs.get(abreBinaire.getNoeuds().indexOf(noeud)),
-								v1);
+						if (isRougeNoire) {
+							Object v1;
+							v1 = graph.insertVertex(parent, null, "NIL", 0, 0, 50, 30, "NOIR");
+							graph.insertEdge(parent, null, "", vertexs.get(abreBinaire.getNoeuds().indexOf(noeud)),
+									v1);
+						} else {
+							Object v1;
+							v1 = graph.insertVertex(parent, null, "NIL", 0, 0, 60, 60, "RIEN");
+							graph.insertEdge(parent, null, "", vertexs.get(abreBinaire.getNoeuds().indexOf(noeud)),
+									v1);
+						}
 					}
 				}
 
@@ -114,13 +130,30 @@ public class Draw {
 							vertexs.get(abreBinaire.getNoeuds().indexOf(noeud.getFilsD())));
 				} else {
 					if (!noeud.IsFeuille()) {
-						Object v1;
-						v1 = graph.insertVertex(parent, null, "null", 0, 0, 60, 60, "RIEN");
-						graph.insertEdge(parent, null, "", vertexs.get(abreBinaire.getNoeuds().indexOf(noeud)),
-								v1);
+						if (isRougeNoire) {
+							Object v1;
+							v1 = graph.insertVertex(parent, null, "NIL", 0, 0, 50, 30, "NOIR");
+							graph.insertEdge(parent, null, "", vertexs.get(abreBinaire.getNoeuds().indexOf(noeud)),
+									v1);
+						} else {
+							Object v1;
+							v1 = graph.insertVertex(parent, null, "NIL", 0, 0, 60, 60, "RIEN");
+							graph.insertEdge(parent, null, "", vertexs.get(abreBinaire.getNoeuds().indexOf(noeud)),
+									v1);
+						}
 					}
 				}
 
+				if (isRougeNoire) {
+					if (noeud.IsFeuille()) {
+
+						Object v1 = graph.insertVertex(parent, null, "NIL", 0, 0, 50, 30, "NOIR");
+						graph.insertEdge(parent, null, "", vertexs.get(abreBinaire.getNoeuds().indexOf(noeud)), v1);
+
+						Object v2 = graph.insertVertex(parent, null, "NIL", 0, 0, 50, 30, "NOIR");
+						graph.insertEdge(parent, null, "", vertexs.get(abreBinaire.getNoeuds().indexOf(noeud)), v2);
+					}
+				}
 			}
 
 		} finally {

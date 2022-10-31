@@ -22,13 +22,12 @@ public class Frame extends JFrame {
 
 		this.add(title);
 		// this.setSize(Constans.framewidh, Constans.framehight);
-		// this.setResizable(false);
+		this.setResizable(false);
 		this.setExtendedState(JFrame.MAXIMIZED_BOTH);
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.setLayout(new BoxLayout(this.getContentPane(), BoxLayout.Y_AXIS));
 		this.setLocationRelativeTo(null);
 		this.getContentPane().setBackground(Color.white);
-
 	}
 
 	public Frame(JPanel panel1, JPanel panel2) {
