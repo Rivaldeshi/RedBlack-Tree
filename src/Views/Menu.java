@@ -4,9 +4,9 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-
 import javax.swing.Box;
-
+import Arbre.ArbreBinaireDeRecheche;
+import Arbre.ArbreRougeEtNoir;
 import SwingComponent.Frame;
 import SwingComponent.Panel;
 import SwingComponent.TitreButton;
@@ -15,7 +15,7 @@ import SwingComponent.TitreButton;
 public class Menu extends Panel {
 
 	public static TitreButton Accueil = new TitreButton("Accueil");
-	public static TitreButton ArbreBinair = new TitreButton("Arbre Binaire");
+	public static TitreButton ArbreBinairRecherche = new TitreButton("Arbre Binaire");
 	public static TitreButton ArbreRougeNoire = new TitreButton("ARbre rouge et noir");
 	public static TitreButton Legende = new TitreButton("Legende");
 	public static TitreButton propos = new TitreButton("A propos");
@@ -28,7 +28,7 @@ public class Menu extends Panel {
 		this.add(Box.createVerticalGlue());
 		this.add(Accueil);
 		this.add(Box.createVerticalGlue());
-		this.add(ArbreBinair);
+		this.add(ArbreBinairRecherche);
 		this.add(Box.createVerticalGlue());
 		this.add(ArbreRougeNoire);
 		this.add(Box.createVerticalGlue());
@@ -37,29 +37,29 @@ public class Menu extends Panel {
 		this.add(propos);
 		this.add(Box.createVerticalGlue());
 
-		ArbreBinair.setEnabled(false);
+		ArbreBinairRecherche.setEnabled(false);
 		ArbreRougeNoire.setEnabled(false);
 		Accueil.addActionListener(action);
-		ArbreBinair.addActionListener(action);
+		ArbreBinairRecherche.addActionListener(action);
 		ArbreRougeNoire.addActionListener(action);
 		Legende.addActionListener(action);
 		propos.addActionListener(action);
 	}
 
 	public void bon() {
-		ArbreBinair.setEnabled(true);
+		ArbreBinairRecherche.setEnabled(true);
 		ArbreRougeNoire.setEnabled(true);
 	}
 
 	public static void unsetfocus() {
 		Accueil.setBackground(Color.white);
-		ArbreBinair.setBackground(Color.white);
+		ArbreBinairRecherche.setBackground(Color.white);
 		ArbreRougeNoire.setBackground(Color.white);
 		Legende.setBackground(Color.white);
 		propos.setBackground(Color.white);
 
 		Accueil.setForeground(Color.black);
-		ArbreBinair.setForeground(Color.black);
+		ArbreBinairRecherche.setForeground(Color.black);
 		ArbreRougeNoire.setForeground(Color.black);
 		Legende.setForeground(Color.black);
 		propos.setForeground(Color.black);
@@ -71,16 +71,20 @@ public class Menu extends Panel {
 		public void actionPerformed(ActionEvent e) {
 			unsetfocus();
 			if (e.getSource() == Accueil) {
-				Frame.splitPane.setRightComponent(new Verification());
+				Frame.splitPane.setRightComponent(new Accueil());
 				Accueil.focus();
 			} else
 
-			if (e.getSource() == ArbreBinair) {
+			if (e.getSource() == ArbreBinairRecherche) {
+				Frame.splitPane
+						.setRightComponent(
+								new AbreBinaireView(new ArbreBinaireDeRecheche(MainView.TableauxCourant), false));
+				ArbreBinairRecherche.focus();
 
-				Frame.splitPane.setRightComponent(new AbreBinaireView(
-						MainView.ArbreCourant));
-				ArbreBinair.focus();
-
+			} else if (e.getSource() == ArbreRougeNoire) {
+				Frame.splitPane
+						.setRightComponent(new AbreBinaireView(new ArbreRougeEtNoir(MainView.TableauxCourant), true));
+				ArbreRougeNoire.focus();
 			} else
 
 			if (e.getSource() == Legende) {

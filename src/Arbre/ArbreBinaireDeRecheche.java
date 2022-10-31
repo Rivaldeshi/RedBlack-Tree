@@ -1,5 +1,7 @@
 package Arbre;
 
+import java.util.List;
+
 public class ArbreBinaireDeRecheche extends ArbreBinaire {
 
     public ArbreBinaireDeRecheche() {
@@ -14,6 +16,15 @@ public class ArbreBinaireDeRecheche extends ArbreBinaire {
         Racine = noeud;
         actualiserListeDesNoeuds();
     }
+
+    public ArbreBinaireDeRecheche(List<Integer> Cles) {
+        super();
+        for (Integer cle : Cles) {
+            this.InserNoeud(cle);
+        }
+        actualiserListeDesNoeuds();
+    }
+
 
     public void InserNoeud(Noeud noeud) {
         this.setRacine(InsertionRecursive(this.getRacine(), noeud));

@@ -1,5 +1,7 @@
 package Arbre;
 
+import java.util.List;
+
 public class ArbreRougeEtNoir extends ArbreBinaireDeRecheche {
 
     public ArbreRougeEtNoir() {
@@ -8,6 +10,14 @@ public class ArbreRougeEtNoir extends ArbreBinaireDeRecheche {
 
     public ArbreRougeEtNoir(int cles) {
         super(cles);
+    }
+
+    public ArbreRougeEtNoir(List<Integer> Cles) {
+        super();
+        for (Integer cle : Cles) {
+            this.InserNoeud(cle);
+        }
+   //     actualiserListeDesNoeuds();
     }
 
     public void InserNoeud(int cles) {
@@ -21,7 +31,6 @@ public class ArbreRougeEtNoir extends ArbreBinaireDeRecheche {
         if (noeud.Parent.Parent == null) {
             return;
         }
-
         Reorganiser(noeud);
     }
 

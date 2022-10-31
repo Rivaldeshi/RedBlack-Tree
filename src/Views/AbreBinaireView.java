@@ -24,13 +24,14 @@ public class AbreBinaireView extends Panel {
 
 	Panel footer = new Panel();
 
-	AbreBinaireView(final ArbreBinaire arbreBinaire) {
+	AbreBinaireView(final ArbreBinaire arbreBinaire, final Boolean isRougeEtNoir) {
 
 		super();
-		unsetfocus();
+
 		VUE.focus();
 		try {
-			footer.add(Draw.drawArbre(arbreBinaire, "Vue"));
+
+			footer.add(Draw.drawArbre(arbreBinaire, "ArbreNoir", isRougeEtNoir));
 
 		} catch (Exception e) {
 			// TODO: handle exception
@@ -48,7 +49,6 @@ public class AbreBinaireView extends Panel {
 
 		ActionListener acc = new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				unsetfocus();
 
 				try {
 
@@ -56,7 +56,7 @@ public class AbreBinaireView extends Panel {
 					if (e.getSource() == VUE) {
 
 						VUE.focus();
-						footer.add(Draw.drawArbreRougeNoir(arbreBinaire, "Arbre"));
+						footer.add(Draw.drawArbre(arbreBinaire, "Arbrouge", isRougeEtNoir));
 
 					} else if (e.getSource() == INSERTION) {
 						INSERTION.focus();
@@ -82,19 +82,6 @@ public class AbreBinaireView extends Panel {
 		for (TitreButton btn : heads) {
 			btn.addActionListener(acc);
 		}
-
-	}
-
-	public static void unsetfocus() {
-		VUE.setBackground(Color.white);
-		INSERTION.setBackground(Color.white);
-		ROTATION.setBackground(Color.white);
-		SUPPRESSION.setBackground(Color.white);
-
-		VUE.setForeground(Color.black);
-		INSERTION.setForeground(Color.black);
-		ROTATION.setForeground(Color.black);
-		SUPPRESSION.setForeground(Color.black);
 
 	}
 
