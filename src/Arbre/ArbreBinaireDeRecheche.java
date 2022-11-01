@@ -62,6 +62,17 @@ public class ArbreBinaireDeRecheche extends ArbreBinaire {
         return racine;
     }
 
+    public int HauteurRecusive(Noeud noeud) {
+        if (noeud == null) {
+            return -1;
+        }
+        return 1 + Math.max(HauteurRecusive(noeud.FilsD), HauteurRecusive(noeud.FilsG));
+    }
+
+    public int Hauteur() {
+        return HauteurRecusive(Racine);
+    }
+
     public void SupressionNoeud(int cle) {
         List<Integer> cles = GetListeCleParcourLargeur();
         cles.remove(Integer.valueOf(cle));

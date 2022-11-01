@@ -1,13 +1,18 @@
 package Views;
 
+import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.swing.Box;
+
 import Arbre.*;
 import DrawArbre.Draw;
 import SwingComponent.Header;
+import SwingComponent.Label;
 import SwingComponent.Panel;
 import SwingComponent.Text;
 import SwingComponent.TitreButton;
@@ -17,6 +22,7 @@ public class AbreBinaireView extends Panel {
 
 	final public TitreButton INSERTION = new TitreButton("INSERTION");
 	final public TitreButton SUPPRESSION = new TitreButton("SUPPRESSION");
+	final public TitreButton RECHERCHE = new TitreButton("RECHERCHE");
 	final public TitreButton ROTATIONG = new TitreButton("ROTATION GAUCHE");
 	final public TitreButton ROTATIOND = new TitreButton("ROTATION DROITE");
 	final public Text Element = new Text(0);
@@ -39,10 +45,22 @@ public class AbreBinaireView extends Panel {
 		heads.add(SUPPRESSION);
 		heads.add(ROTATIOND);
 		heads.add(ROTATIONG);
+		heads.add(RECHERCHE);
+
+		if (isRougeEtNoir) {
+			ROTATIOND.setEnabled(false);
+			ROTATIONG.setEnabled(false);
+			RECHERCHE.setEnabled(false);
+		}
 
 		Header header = new Header(Element, heads);
 		this.add(footer);
 		this.add(header);
+		INSERTION.focus();
+		SUPPRESSION.focus();
+		ROTATIOND.focus();
+		ROTATIONG.focus();
+		RECHERCHE.focus();
 
 		ActionListener acc = new ActionListener() {
 
@@ -84,7 +102,7 @@ public class AbreBinaireView extends Panel {
 							}
 
 						} catch (Exception excep) {
-							// TODO: handle exception
+							throw excep;
 						}
 
 					} else if (e.getSource() == ROTATIONG) {
@@ -99,6 +117,23 @@ public class AbreBinaireView extends Panel {
 							ArbreBinaireDeRecheche abrn = MainView.ArbreRechercheCourant;
 							abrn.RoationGaucheDansArbre(Nombre);
 							footer.add(Draw.drawArbre(abrn, "ARBRE BINAIRE DE RECHERCHE : ROTATION GAUCHE  " + Nombre,
+									isRougeEtNoir));
+						}
+
+					} else if (e.getSource() == RECHERCHE) {
+
+						int Nombre = Integer.parseInt(Element.getText());
+						if (isRougeEtNoir) {
+							ArbreRougeEtNoir abrn = MainView.ArbreRougeNoirCourant;
+							Noeud noeud = abrn.GetNoeud(Nombre);
+							noeud.setColor(2);
+							footer.add(
+									Draw.drawArbre(abrn, "ARBRE ROUGE ET NOIR : RECHERCHE   " + Nombre, isRougeEtNoir));
+						} else {
+							ArbreBinaireDeRecheche abrn = MainView.ArbreRechercheCourant;
+							Noeud noeud = abrn.GetNoeud(Nombre);
+							noeud.setColor(2);
+							footer.add(Draw.drawArbre(abrn, "ARBRE BINAIRE DE RECHERCHE : RECHERCHE  " + Nombre,
 									isRougeEtNoir));
 						}
 
@@ -120,13 +155,19 @@ public class AbreBinaireView extends Panel {
 							}
 						} catch (Exception excep) {
 							excep.printStackTrace();
-							// TODO: handle exception
+							throw excep;
 						}
 					}
 
 					footer.repaint();
 					footer.revalidate();
 				} catch (Exception e1) {
+					Label ereur = new Label("Une erreu est survenue");
+					ereur.setForeground(Color.RED);
+					footer.add(Draw.drawArbre(arbreBinaire, "ARBRE BINAIRE DE RECHERCHE (Vue )", isRougeEtNoir));
+					footer.add(ereur);
+					footer.repaint();
+					footer.revalidate();
 					e1.printStackTrace();
 				}
 

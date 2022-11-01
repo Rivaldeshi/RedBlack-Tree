@@ -1,7 +1,6 @@
 package DrawArbre;
 
 import SwingComponent.Panel;
-import Utils.ValidationException;
 import Views.MainView;
 
 import com.mxgraph.swing.mxGraphComponent;
@@ -56,15 +55,17 @@ public class Draw {
 		style.put(mxConstants.STYLE_STROKECOLOR, "#000000");
 		STYLE.putCellStyle("NOIR", style);
 
+
 		style = new HashMap<String, Object>();
 		style.put(mxConstants.STYLE_SHAPE, mxConstants.SHAPE_ELLIPSE);
 		style.put(mxConstants.STYLE_FONTCOLOR, "#FFFFFF");
 		style.put(mxConstants.STYLE_PERIMETER, mxPerimeter.EllipsePerimeter);
 		style.put(mxConstants.STYLE_ALIGN, mxConstants.ALIGN_CENTER);
-		style.put(mxConstants.STYLE_FILLCOLOR, "#000000");
+		style.put(mxConstants.STYLE_FILLCOLOR, "#08ac10");
 		style.put(mxConstants.STYLE_STROKECOLOR, "#000000");
-		STYLE.putCellStyle("NIL", style);
+		STYLE.putCellStyle("RECHERCHE", style);
 
+		
 		style = new HashMap<String, Object>();
 		style.put(mxConstants.STYLE_SHAPE, mxConstants.SHAPE_CONNECTOR);
 		style.put(mxConstants.STYLE_ENDARROW, mxConstants.ARROW_CLASSIC);
@@ -76,8 +77,7 @@ public class Draw {
 
 	}
 
-	public static Panel drawArbre(ArbreBinaire abreBinaire, String nom, Boolean isRougeNoire)
-			throws ValidationException {
+	public static Panel drawArbre(ArbreBinaire abreBinaire, String nom, Boolean isRougeNoire) {
 
 		// Creates graph with model
 		mxGraph graph = new mxGraph();
@@ -99,7 +99,13 @@ public class Draw {
 						v1 = graph.insertVertex(parent, null, noeud, 0, 0, 60, 60, "NOIR");
 					}
 				} else {
-					v1 = graph.insertVertex(parent, null, noeud, 0, 0, 60, 60, "RIEN");
+					if (noeud.getColor() == 2) {
+						v1 = graph.insertVertex(parent, null, noeud, 0, 0, 60, 60, "RECHERCHE");
+						noeud.setColor(0);
+					}else{
+						v1 = graph.insertVertex(parent, null, noeud, 0, 0, 60, 60, "RIEN");
+					}
+
 				}
 				vertexs.add(v1);
 			}
@@ -183,9 +189,11 @@ public class Draw {
 		if (MainView.TableauxCourant != null && MainView.TableauxCourant.size() < 6) {
 			graphPan.setLayout(new GridBagLayout());
 		}
+
 		graphPan.add(graphComponent, new GridBagConstraints());
 		pan.setBackground(Color.white);
 		graphPan.setBackground(Color.white);
+		
 		pan.add(graphPan);
 
 		return pan;
